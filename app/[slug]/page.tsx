@@ -9,7 +9,8 @@ interface PageProps {
 export default function DynamicRedirectPage({ params }: PageProps) {
   const { slug } = params
   const envKey = slug.toUpperCase()
-  const targetUrl = process.env[envKey]
+
+  const targetUrl = process.env[`${envKey}_SITEMAP`] || process.env[envKey]
 
   if (!targetUrl) {
     notFound()
