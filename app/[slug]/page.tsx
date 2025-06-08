@@ -8,6 +8,11 @@ interface PageProps {
 
 export default function DynamicRedirectPage({ params }: PageProps) {
   const { slug } = params
+
+  if (slug.toUpperCase().startsWith("NU_") || slug.toUpperCase().endsWith("_SITEMAP")) {
+    notFound()
+  }
+
   const envKey = slug.toUpperCase()
 
   const targetUrl =
